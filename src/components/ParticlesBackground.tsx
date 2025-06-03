@@ -15,7 +15,8 @@ export default function ParticlesBackground() {
   const particles = useRef<Particle[]>([]);
   const animationFrameId = useRef<number | null>(null);
   const mousePosition = useRef<{ x: number; y: number } | null>(null);
-  const [dimensions, setDimensions] = useState({ width: window.innerWidth, height: window.innerHeight });
+  // Use refs instead of state to avoid re-rendering on resize
+  const canvasDimensions = useRef({ width: window.innerWidth, height: window.innerHeight });
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -25,7 +26,7 @@ export default function ParticlesBackground() {
     if (!ctx) return;
 
     const resizeCanvas = () => {
-      setDimensions({ width: window.innerWidth, height: window.innerHeight });
+      canvasDimensions.current = { width: window.innerWidth, height: window.innerHeight };
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       initParticles();
@@ -141,14 +142,14 @@ export default function ParticlesBackground() {
         cancelAnimationFrame(animationFrameId.current);
       }
     };
-  }, [dimensions]);
+  }, []);
 
   return (
     <canvas 
       ref={canvasRef} 
       className="fixed top-0 left-0 w-full h-full -z-10 opacity-50"
-      width={dimensions.width}
-      height={dimensions.height}
+      width={canvasDimensions.current.width}
+      height={canvasDimensions.current.height}
     />
   );
 }

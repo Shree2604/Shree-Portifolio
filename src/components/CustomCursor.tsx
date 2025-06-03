@@ -7,20 +7,18 @@ const CustomCursor = () => {
   const [isActive, setIsActive] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
   const [trails, setTrails] = useState<{ x: number, y: number, id: number }[]>([]);
-  const [nextId, setNextId] = useState(0);
   
   useEffect(() => {
     const updateMousePosition = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
       setIsActive(true);
       
-      // Add trail points when mouse moves
+      // Add trail points when mouse moves with unique IDs
+      const timestamp = Date.now();
       if (trails.length < 10) {
-        setTrails(prev => [...prev, { x: e.clientX, y: e.clientY, id: nextId }]);
-        setNextId(prev => prev + 1);
+        setTrails(prev => [...prev, { x: e.clientX, y: e.clientY, id: timestamp }]);
       } else {
-        setTrails(prev => [...prev.slice(1), { x: e.clientX, y: e.clientY, id: nextId }]);
-        setNextId(prev => prev + 1);
+        setTrails(prev => [...prev.slice(1), { x: e.clientX, y: e.clientY, id: timestamp }]);
       }
     };
     
@@ -42,7 +40,7 @@ const CustomCursor = () => {
       window.removeEventListener('mouseleave', handleMouseLeave);
       window.removeEventListener('mouseenter', handleMouseEnter);
     };
-  }, [nextId, trails.length]);
+  }, [trails.length]);
   
   // Generate random ML code snippets for the cursor trails
   const getRandomCodeSnippet = () => {
