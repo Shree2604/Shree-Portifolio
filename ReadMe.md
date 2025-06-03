@@ -9,8 +9,8 @@
 **✨ AI-Powered Personal Portfolio | 100% No-Code | Built for the Future ✨**
 
 [![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-Visit_Site-blue?style=for-the-badge)](your-portfolio-url)
-[![GitHub Stars](https://img.shields.io/github/stars/Shree2604/Shree-Portfolio?style=for-the-badge&logo=github)](https://github.com/Shree2604/Shree-Portifolio)
-[![Made with AI](https://img.shields.io/badge/Made_with-AI_&_No_Code-purple?style=for-the-badge&logo=openai)](https://github.com/Shree2604/Shree-Portifolio)
+[![GitHub Stars](https://img.shields.io/github/stars/Shree2604/Shree-Portifolio?style=for-the-badge&logo=github)](https://github.com/Shree2604/Shree-Portfolio)
+[![Made with AI](https://img.shields.io/badge/Made_with-AI_&_No_Code-purple?style=for-the-badge&logo=openai)](https://github.com/Shree2604/Shree-Portfolio)
 
 </div>
 
