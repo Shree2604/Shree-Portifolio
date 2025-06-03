@@ -19,21 +19,21 @@ const featuredProjects = [
     description: "AI-powered GIF generation workflow with multiple autonomous agents.",
     tags: ["LangGraph", "Google Gemini", "Stable Diffusion"],
     github: "https://github.com/Shree2604/GIF-Animation-Generator-Agent",
-    image: "https://res.cloudinary.com/dvwsffyt2/image/upload/v1717427032/gif-generator_fcfbxl.jpg"
+    // image removed
   },
   {
     title: "Intelligent Healthcare",
     description: "Smart healthcare ecosystem for real-time monitoring with explainable AI.",
     tags: ["Explainable AI", "ML Models", "XGBoost"],
     github: "https://github.com/Shree2604/ML-Internship-Task",
-    image: "https://res.cloudinary.com/dvwsffyt2/image/upload/v1717427032/healthcare-ai_dsbmhs.jpg"
+    // image removed
   },
   {
     title: "Face Recognition for Attendance",
     description: "Haar Cascade-based face recognition system with 95% accuracy for automated attendance tracking.",
     tags: ["OpenCV", "Computer Vision", "TensorFlow"],
     github: "https://github.com/Shree2604/Face-Recognition-for-Attendance-Systems",
-    image: "https://res.cloudinary.com/dvwsffyt2/image/upload/v1717427032/face-recognition_jnbdbx.jpg"
+    // image removed
   },
   {
     title: "Lyric Loom",
@@ -41,7 +41,7 @@ const featuredProjects = [
     tags: ["React", "Node.js", "MongoDB"],
     github: "https://github.com/Shree2604/lyric-loom",
     liveUrl: "https://lyric-loom-fveq.vercel.app/",
-    image: "https://res.cloudinary.com/dvwsffyt2/image/upload/v1717427032/music-app_rcsz1c.jpg"
+    // image removed
   }
 ];
 
@@ -305,15 +305,7 @@ const Index = () => {
                 transition={{ delay: index * 0.2, duration: 0.5 }}
               >
                 <Card className="h-full overflow-hidden">
-                  <div className="relative h-48 overflow-hidden">
-                    <img 
-                      src={project.image} 
-                      alt={project.title}
-                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent"></div>
-                  </div>
+                  {/* Image section removed */}
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold mb-2">{project.title}</h3>
                     <p className="text-muted-foreground mb-4">{project.description}</p>

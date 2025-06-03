@@ -16,7 +16,6 @@ import {
 interface ProjectCardProps {
   title: string;
   description: string;
-  image: string;
   technologies: string[];
   liveUrl?: string | null;
   githubUrl?: string | null;
@@ -26,7 +25,6 @@ interface ProjectCardProps {
 export default function ProjectCard({ 
   title,
   description,
-  image,
   technologies,
   liveUrl,
   githubUrl,
@@ -44,40 +42,11 @@ export default function ProjectCard({
       onMouseLeave={() => setIsHovered(false)}
       whileHover={{ y: -5 }}
     >
-      <div className="relative h-64 overflow-hidden">
-        <img 
-          src={image} 
-          alt={title}
-          className="w-full h-full object-cover transition-transform duration-500 ease-in-out"
-          style={{ transform: isHovered ? 'scale(1.05)' : 'scale(1)' }}
-          loading="lazy"
-        />
-        <div className={`absolute inset-0 bg-gradient-to-t from-background/90 via-background/50 to-transparent flex flex-col justify-end p-4 transition-opacity duration-300 ${isHovered ? 'opacity-90' : 'opacity-70'}`}>
-          <div className="flex gap-2 mb-2">
-            {githubUrl && (
-              <Button size="icon" variant="secondary" className="rounded-full bg-background/80 backdrop-blur-sm" asChild>
-                <a href={githubUrl} target="_blank" rel="noopener noreferrer">
-                  <Github className="h-4 w-4" />
-                </a>
-              </Button>
-            )}
-            
-            {liveUrl && (
-              <Button size="icon" variant="secondary" className="rounded-full bg-background/80 backdrop-blur-sm" asChild>
-                <a href={liveUrl} target="_blank" rel="noopener noreferrer">
-                  <ExternalLink className="h-4 w-4" />
-                </a>
-              </Button>
-            )}
-          </div>
-        </div>
-      </div>
-      
       <div className="p-5 flex-grow flex flex-col">
         <h3 className="text-xl font-semibold mb-2">{title}</h3>
-        <p className="text-muted-foreground mb-4 text-sm line-clamp-3 flex-grow">{description}</p>
+        <p className="text-muted-foreground mb-4 text-sm flex-grow">{description}</p>
         
-        <div className="flex flex-wrap gap-2 mb-4 mt-auto">
+        <div className="flex flex-wrap gap-2 mb-4">
           {technologies.map((tech, i) => (
             <Badge key={i} variant="outline" className="text-xs bg-primary/10 border-primary/20">
               {tech}
@@ -85,7 +54,7 @@ export default function ProjectCard({
           ))}
         </div>
         
-        <div className="flex gap-3 mt-2">
+        <div className="flex gap-3 mt-4">
           {githubUrl && (
             <Button variant="outline" size="sm" className="gap-2 flex-1" asChild>
               <a href={githubUrl} target="_blank" rel="noopener noreferrer">
@@ -102,7 +71,6 @@ export default function ProjectCard({
             </Button>
           )}
           
-          {/* Project Details Dialog */}
           <Dialog>
             <DialogTrigger asChild>
               <Button size="sm" variant="secondary" className="flex-1 gap-1">
@@ -114,6 +82,7 @@ export default function ProjectCard({
                 <DialogTitle className="text-xl font-semibold">{title}</DialogTitle>
                 <DialogDescription className="text-foreground/90">{description}</DialogDescription>
               </DialogHeader>
+
               
               <div className="space-y-4 mt-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

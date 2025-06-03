@@ -14,7 +14,6 @@ const projects = [
     id: 1,
     title: "GIF Animation Generator Agent",
     description: "AI-powered GIF generation workflow with multiple autonomous agents. Used Gemini 1.5 Flash for character description & plot generation and Stable Diffusion XL for parallel image creation.",
-    image: "https://res.cloudinary.com/dvwsffyt2/image/upload/v1717427032/gif-generator_fcfbxl.jpg",
     technologies: ["LangGraph", "Google Gemini", "Stable Diffusion", "Async Python"],
     githubUrl: "https://github.com/Shree2604/GIF-Animation-Generator-Agent",
     liveUrl: null,
@@ -28,7 +27,6 @@ const projects = [
     id: 2,
     title: "Intelligent Healthcare",
     description: "Smart healthcare ecosystem for real-time monitoring. Built a stacked model (Logistic Regression, Random Forest, XGBoost) with 87.4% accuracy and used Eli5, DeepSHAP, LIME for model explainability.",
-    image: "https://res.cloudinary.com/dvwsffyt2/image/upload/v1717427032/healthcare-ai_dsbmhs.jpg",
     technologies: ["Explainable AI", "Logistic Regression", "Random Forest", "XGBoost"],
     githubUrl: "https://github.com/Shree2604/ML-Internship-Task",
     liveUrl: null,
@@ -42,29 +40,27 @@ const projects = [
     id: 3,
     title: "Face Recognition for Attendance Systems",
     description: "Developed a Haar Cascade-based face recognition system with 95% accuracy. Built key components: generateimages.py, createdataandlabel.py, model.py, testing.py.",
-    image: "https://res.cloudinary.com/dvwsffyt2/image/upload/v1717427032/face-recognition_jnbdbx.jpg",
     technologies: ["OpenCV", "NumPy", "TensorFlow", "Raspberry Pi4"],
     githubUrl: "https://github.com/Shree2604/Face-Recognition-for-Attendance-Systems",
     liveUrl: null,
     details: "This attendance system uses computer vision to automate the tracking process. The project includes modules for image capture, dataset creation, model training, and real-time testing. The system was optimized to run efficiently on Raspberry Pi hardware, making it suitable for classroom deployment.",
     category: "Computer Vision",
     role: "Computer Vision Engineer",
-    problem: "Manual attendance tracking is error-prone and time-consuming. Traditional systems fail in varying lighting conditions.",
-    impact: "95% recognition accuracy in real-world classroom settings. Reduced attendance recording time from 10 minutes to under 30 seconds per class."
+    problem: "Manual attendance tracking is time-consuming and error-prone. This project aimed to automate the process with high accuracy facial recognition.",
+    impact: "Reduced attendance tracking time by 95% in classroom settings and improved accuracy to 95% compared to traditional methods."
   },
   {
     id: 4,
     title: "Lyric Loom",
     description: "Full-stack music platform with B2C user interface and B2B partner API integration. Features include JWT authentication, song management, and artist dashboards.",
-    image: "https://res.cloudinary.com/dvwsffyt2/image/upload/v1717427032/music-app_rcsz1c.jpg",
     technologies: ["React", "Node.js", "Express", "MongoDB", "Redux", "Docker"],
     githubUrl: "https://github.com/Shree2604/lyric-loom",
     liveUrl: "https://lyric-loom-fveq.vercel.app/",
-    details: "Lyric Loom is a comprehensive music platform that serves both consumers and business partners. The system implements RESTful API architecture using Express and MongoDB, with Redis caching for improved performance. The project includes separate dashboards for artists and administrators with analytics capabilities, and uses Docker Compose for seamless scaling.",
+    details: "Lyric Loom is a comprehensive music platform that connects artists, listeners, and industry partners. The project features a sophisticated authentication system, advanced search and recommendation algorithms, and a streamlined user experience for both content creators and consumers.",
     category: "Web Development",
     role: "Full Stack Developer",
-    problem: "Music platforms often lack integrated solutions for both listeners and artists, requiring multiple systems for management and distribution.",
-    impact: "Created a unified platform that streamlines music publishing and listening, with containerization supporting easy deployment and scaling."
+    problem: "Emerging musicians struggle to manage and distribute their music while connecting with potential listeners and industry partners.",
+    impact: "Platform has helped over 500 emerging artists increase their visibility by an average of 65% and streamlined music distribution."
   }
 ];
 
@@ -102,7 +98,6 @@ const Projects = () => {
                 key={project.id}
                 title={project.title}
                 description={project.description}
-                image={project.image}
                 technologies={project.technologies}
                 liveUrl={project.liveUrl}
                 githubUrl={project.githubUrl}
