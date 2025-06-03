@@ -18,13 +18,30 @@ const featuredProjects = [
     title: "GIF Animation Generator Agent",
     description: "AI-powered GIF generation workflow with multiple autonomous agents.",
     tags: ["LangGraph", "Google Gemini", "Stable Diffusion"],
-    github: "https://github.com/Shree2604/GIF-Animation-Generator-Agent"
+    github: "https://github.com/Shree2604/GIF-Animation-Generator-Agent",
+    image: "https://res.cloudinary.com/dvwsffyt2/image/upload/v1717427032/gif-generator_fcfbxl.jpg"
   },
   {
     title: "Intelligent Healthcare",
     description: "Smart healthcare ecosystem for real-time monitoring with explainable AI.",
     tags: ["Explainable AI", "ML Models", "XGBoost"],
-    github: "https://github.com/Shree2604/ML-Internship-Task"
+    github: "https://github.com/Shree2604/ML-Internship-Task",
+    image: "https://res.cloudinary.com/dvwsffyt2/image/upload/v1717427032/healthcare-ai_dsbmhs.jpg"
+  },
+  {
+    title: "Face Recognition for Attendance",
+    description: "Haar Cascade-based face recognition system with 95% accuracy for automated attendance tracking.",
+    tags: ["OpenCV", "Computer Vision", "TensorFlow"],
+    github: "https://github.com/Shree2604/Face-Recognition-for-Attendance-Systems",
+    image: "https://res.cloudinary.com/dvwsffyt2/image/upload/v1717427032/face-recognition_jnbdbx.jpg"
+  },
+  {
+    title: "Lyric Loom",
+    description: "Full-stack music platform with B2C interface and B2B partner API integration.",
+    tags: ["React", "Node.js", "MongoDB"],
+    github: "https://github.com/Shree2604/lyric-loom",
+    liveUrl: "https://lyric-loom-fveq.vercel.app/",
+    image: "https://res.cloudinary.com/dvwsffyt2/image/upload/v1717427032/music-app_rcsz1c.jpg"
   }
 ];
 
@@ -32,15 +49,24 @@ const featuredProjects = [
 const featuredPosts = [
   {
     type: "publication",
-    title: "Advancements in Autonomous AI Agent Architecture",
-    excerpt: "Research findings on optimizing agent-based systems for complex tasks.",
-    date: "April 10, 2025"
+    title: "Unveiling the Black Box: A Comprehensive Journey into Explainable AI",
+    excerpt: "A detailed exploration of explainable AI methods and their applications.",
+    url: "https://medium.com/epochiiits/unveiling-the-black-box-a-comprehensive-journey-into-explainable-ai-fd0bd017b70c",
+    date: "May 15, 2023"
   },
   {
-    type: "blog",
-    title: "Building Autonomous Agents with LangGraph",
-    excerpt: "Explore the architecture and implementation details of creating autonomous AI agents.",
-    date: "April 2, 2025"
+    type: "publication",
+    title: "Creating Artistic Outlines: Combining Python, OpenCV, and Turtle Graphics",
+    excerpt: "Innovative approach to artistic image processing with Python libraries.",
+    url: "https://medium.com/epochiiits/creating-artistic-outlines-combining-python-opencv-and-turtle-graphics-178a1faab856",
+    date: "January 22, 2024"
+  },
+  {
+    type: "publication",
+    title: "Explainable AI for Communicable Disease Prediction",
+    excerpt: "A breakthrough approach using explainable AI for healthcare predictions.",
+    url: "https://medium.com/@shreeraj260405/explainable-ai-for-communicable-disease-prediction-a-breakthrough-in-healthcare-technology-662d66efcdb3",
+    date: "December 8, 2023"
   }
 ];
 
@@ -278,7 +304,16 @@ const Index = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.2, duration: 0.5 }}
               >
-                <Card className="h-full">
+                <Card className="h-full overflow-hidden">
+                  <div className="relative h-48 overflow-hidden">
+                    <img 
+                      src={project.image} 
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent"></div>
+                  </div>
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold mb-2">{project.title}</h3>
                     <p className="text-muted-foreground mb-4">{project.description}</p>
@@ -375,11 +410,17 @@ const Index = () => {
                     <p className="text-muted-foreground mb-4">{post.excerpt}</p>
                     
                     <div className="mt-auto pt-2">
-                      <Link to="/blog">
+                      <a
+                        href={post.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block w-full"
+                      >
                         <Button variant="outline" size="sm" className="w-full">
-                          Read {post.type === "publication" ? "Publication" : "Article"}
+                          Read on Medium
+                          <ArrowRight className="ml-1 h-3 w-3" />
                         </Button>
-                      </Link>
+                      </a>
                     </div>
                   </CardContent>
                 </Card>

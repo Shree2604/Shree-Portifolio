@@ -44,14 +44,14 @@ export default function ProjectCard({
       onMouseLeave={() => setIsHovered(false)}
       whileHover={{ y: -5 }}
     >
-      <div 
-        className="relative h-52 overflow-hidden"
-        style={{
-          backgroundImage: `url(${image})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
-        }}
-      >
+      <div className="relative h-64 overflow-hidden">
+        <img 
+          src={image} 
+          alt={title}
+          className="w-full h-full object-cover transition-transform duration-500 ease-in-out"
+          style={{ transform: isHovered ? 'scale(1.05)' : 'scale(1)' }}
+          loading="lazy"
+        />
         <div className={`absolute inset-0 bg-gradient-to-t from-background/90 via-background/50 to-transparent flex flex-col justify-end p-4 transition-opacity duration-300 ${isHovered ? 'opacity-90' : 'opacity-70'}`}>
           <div className="flex gap-2 mb-2">
             {githubUrl && (

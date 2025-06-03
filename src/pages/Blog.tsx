@@ -19,6 +19,7 @@ interface Post {
   tags: string[];
   type: "publication" | "blog";
   image?: string;
+  url: string;
 }
 
 // Sample publications and blog posts data
@@ -26,71 +27,113 @@ const posts: Post[] = [
   // Publications
   {
     id: 1,
-    title: "Advancements in Autonomous AI Agent Architecture",
-    excerpt: "Research findings on optimizing agent-based systems for complex tasks and decision-making processes.",
-    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi.",
-    date: "April 10, 2025",
-    readTime: "8 min",
-    category: "Research",
-    tags: ["AI Agents", "Research", "Architecture"],
-    type: "publication"
+    title: "Unveiling the Black Box: A Comprehensive Journey into Explainable AI",
+    excerpt: "A detailed exploration of explainable AI methods and their applications.",
+    content: "Full article available on Medium",
+    date: "May 15, 2023",
+    readTime: "10 min",
+    category: "Explainable AI",
+    tags: ["XAI", "AI Ethics", "Transparency"],
+    type: "publication",
+    url: "https://medium.com/epochiiits/unveiling-the-black-box-a-comprehensive-journey-into-explainable-ai-fd0bd017b70c"
   },
   {
     id: 2,
-    title: "Novel Approach to Explainable AI in Healthcare",
-    excerpt: "A framework for making complex healthcare AI models interpretable for medical professionals.",
-    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi.",
-    date: "March 20, 2025",
-    readTime: "10 min",
-    category: "Research",
-    tags: ["XAI", "Healthcare", "Research"],
-    type: "publication"
+    title: "Creating Artistic Outlines: Combining Python, OpenCV, and Turtle Graphics",
+    excerpt: "Innovative approach to artistic image processing with Python libraries.",
+    content: "Full article available on Medium",
+    date: "January 22, 2024",
+    readTime: "8 min",
+    category: "Computer Vision",
+    tags: ["Python", "OpenCV", "Graphics"],
+    type: "publication",
+    url: "https://medium.com/epochiiits/creating-artistic-outlines-combining-python-opencv-and-turtle-graphics-178a1faab856"
+  },
+  {
+    id: 3,
+    title: "Explainable AI for Communicable Disease Prediction",
+    excerpt: "A breakthrough approach using explainable AI for healthcare predictions.",
+    content: "Full article available on Medium",
+    date: "December 8, 2023",
+    readTime: "12 min",
+    category: "Healthcare",
+    tags: ["XAI", "Healthcare", "Disease Prediction"],
+    type: "publication",
+    url: "https://medium.com/@shreeraj260405/explainable-ai-for-communicable-disease-prediction-a-breakthrough-in-healthcare-technology-662d66efcdb3"
   },
   
   // Blogs
   {
-    id: 3,
-    title: "Building Autonomous Agents with LangGraph",
-    excerpt: "Explore the architecture and implementation details of creating autonomous AI agents using LangGraph and LangChain.",
-    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi.",
-    date: "April 2, 2025",
-    readTime: "5 min",
-    category: "Machine Learning",
-    tags: ["LangGraph", "AI Agents", "LangChain"],
-    type: "blog"
-  },
-  {
     id: 4,
-    title: "Optimizing Transformer Models for Low-Resource Languages",
-    excerpt: "Techniques and strategies for building effective NLP models for languages with limited data resources.",
-    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi.",
-    date: "March 15, 2025",
+    title: "Why Explainable AI Matters?: Bringing Transparency to Machine Learning",
+    excerpt: "Understanding the importance of transparency in AI systems and decision-making.",
+    content: "Full article available on Medium",
+    date: "June 20, 2023",
     readTime: "7 min",
-    category: "NLP",
-    tags: ["NLP", "Transformers", "Low-resource Languages"],
-    type: "blog"
+    category: "Explainable AI",
+    tags: ["XAI", "Transparency", "Ethics"],
+    type: "blog",
+    url: "https://medium.com/@shreeraj260405/why-explainable-ai-matters-bringing-transparency-to-machine-learning-cbe1d9113746"
   },
   {
     id: 5,
-    title: "AI-Driven Early Disease Detection Systems",
-    excerpt: "How machine learning models are revolutionizing healthcare by enabling early detection of various diseases.",
-    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi.",
-    date: "February 28, 2025",
-    readTime: "6 min",
-    category: "Healthcare AI",
-    tags: ["Healthcare", "Disease Detection", "ML Models"],
-    type: "blog"
+    title: "Unveiling the Spectrum of Explainable AI: A Deep Dive into XAI Techniques",
+    excerpt: "Exploring the range of techniques available for explaining AI models.",
+    content: "Full article available on Medium",
+    date: "July 5, 2023",
+    readTime: "9 min",
+    category: "Explainable AI",
+    tags: ["XAI", "Techniques", "AI Models"],
+    type: "blog",
+    url: "https://medium.com/@shreeraj260405/unveiling-the-spectrum-of-explainable-ai-a-deep-dive-into-xai-techniques-1ccfa856ac96"
   },
   {
     id: 6,
-    title: "Understanding Diffusion Models for Image Generation",
-    excerpt: "A deep dive into how diffusion models work and their applications in creative image generation.",
-    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi.",
-    date: "February 10, 2025",
-    readTime: "8 min",
-    category: "Computer Vision",
-    tags: ["Diffusion Models", "Image Generation", "Computer Vision"],
-    type: "blog"
+    title: "LIME Unveiled: A Deep Dive into Explaining AI Models",
+    excerpt: "Detailed analysis of LIME for explaining text, image, and tabular data models.",
+    content: "Full article available on Medium",
+    date: "August 12, 2023",
+    readTime: "10 min",
+    category: "Explainable AI",
+    tags: ["LIME", "XAI", "Model Interpretation"],
+    type: "blog",
+    url: "https://medium.com/@shreeraj260405/lime-unveiled-a-deep-dive-into-explaining-ai-models-for-text-images-and-tabular-data-046c7c3b4e9f"
+  },
+  {
+    id: 7,
+    title: "Hands-On LIME: Practical Implementation for Image, Text, and Tabular Data",
+    excerpt: "Step-by-step practical guide to implementing LIME across different data types.",
+    content: "Full article available on Medium",
+    date: "September 18, 2023",
+    readTime: "11 min",
+    category: "Explainable AI",
+    tags: ["LIME", "Implementation", "Tutorial"],
+    type: "blog",
+    url: "https://medium.com/@shreeraj260405/hands-on-lime-practical-implementation-for-image-text-and-tabular-data-95566da87f57"
+  },
+  {
+    id: 8,
+    title: "SHAP Unveiled: A Deep Dive into Explaining AI Models for Machine Learning",
+    excerpt: "Comprehensive analysis of SHAP methods for model interpretation.",
+    content: "Full article available on Medium",
+    date: "October 30, 2023",
+    readTime: "10 min",
+    category: "Explainable AI",
+    tags: ["SHAP", "XAI", "Model Interpretation"],
+    type: "blog",
+    url: "https://medium.com/@shreeraj260405/shap-unveiled-a-deep-dive-into-explaining-ai-models-for-machine-learning-b48ae012e982"
+  },
+  {
+    id: 9,
+    title: "Hands-On SHAP: Practical Implementation for Image, Text, and Tabular Data",
+    excerpt: "Practical tutorial on implementing SHAP for different data modalities.",
+    content: "Full article available on Medium",
+    date: "November 15, 2023",
+    readTime: "12 min",
+    category: "Explainable AI",
+    tags: ["SHAP", "Implementation", "Tutorial"],
+    type: "blog",
+    url: "https://medium.com/@shreeraj260405/hands-on-shap-practical-implementation-for-image-text-and-tabular-data-f74b488f8d71"
   }
 ];
 
@@ -195,9 +238,15 @@ const Blog = () => {
                           <span>{post.date}</span>
                         </div>
                         
-                        <Button variant="ghost" size="sm" className="text-primary hover:text-primary/80">
-                          Read More <ArrowRight className="ml-2 h-3 w-3" />
-                        </Button>
+                        <a
+                          href={post.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Button variant="ghost" size="sm" className="text-primary hover:text-primary/80">
+                            Read on Medium <ArrowRight className="ml-2 h-3 w-3" />
+                          </Button>
+                        </a>
                       </div>
                     </div>
                   </AnimatedCard>
@@ -259,9 +308,15 @@ const Blog = () => {
                           <span>{post.date}</span>
                         </div>
                         
-                        <Button variant="ghost" size="sm" className="text-primary hover:text-primary/80">
-                          Read More <ArrowRight className="ml-2 h-3 w-3" />
-                        </Button>
+                        <a
+                          href={post.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Button variant="ghost" size="sm" className="text-primary hover:text-primary/80">
+                            Read on Medium <ArrowRight className="ml-2 h-3 w-3" />
+                          </Button>
+                        </a>
                       </div>
                     </div>
                   </AnimatedCard>
