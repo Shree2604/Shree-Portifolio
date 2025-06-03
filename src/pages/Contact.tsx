@@ -81,78 +81,57 @@ const Contact = () => {
     }));
   };
   
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  // Temporary solution: Use mailto link instead of EmailJS
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsLoading(true);
-
-    try {
-      // Prepare the email data for direct API call
-      const emailData = {
-        service_id: EMAILJS_SERVICE_ID,
-        template_id: EMAILJS_TEMPLATE_ID,
-        user_id: EMAILJS_PUBLIC_KEY,
-        template_params: {
-          from_name: formData.name,
-          reply_to: formData.email,
-          subject: formData.subject,
-          message: formData.message,
-          to_email: 'shree.xai.dev@gmail.com'
-        }
-      };
-
-      console.log('Sending email with data:', JSON.stringify(emailData, null, 2));
-      
-      // Make a direct fetch call to EmailJS API
-      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(emailData)
-      });
-      
-      // Log the raw response
-      console.log('Raw API response status:', response.status);
-      const responseText = await response.text();
-      console.log('Raw API response text:', responseText);
-      
-      // Check if the response was successful
-      if (!response.ok) {
-        throw new Error(`EmailJS API error: ${response.status} ${responseText}`);
-      }
-      
-      console.log('EmailJS Response:', response);
-      
-      // Display success toast
+    
+    // Form validation
+    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
       toast({
-        title: "Message sent!",
-        description: "Your message has been sent successfully. I'll get back to you as soon as possible.",
+        title: "Missing information",
+        description: "Please fill out all fields in the form.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    try {
+      // Format the email body with line breaks
+      const emailBody = `Name: ${formData.name}
+
+Email: ${formData.email}
+
+Message:
+${formData.message}`;
+      
+      // Create mailto link with all form data
+      const mailtoLink = `mailto:shree.xai.dev@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(emailBody)}`;
+      
+      // Open the user's default email client
+      window.location.href = mailtoLink;
+      
+      // Show success message
+      toast({
+        title: "Email client opened",
+        description: "Your default email client has been opened with your message. Please send the email from there.",
         variant: "default",
       });
       
-      // Reset form after successful submission
+      // Reset form
       setFormData({
         name: '',
         email: '',
         subject: '',
         message: ''
       });
-      
-      console.log('Email sent successfully!');
     } catch (error) {
-      console.error("Error sending message:", error);
+      console.error("Error opening email client:", error);
       
-      // Display detailed error information in console
-      console.error("Error details:", error.message || error);
-      
-      // Display error toast with more helpful message
       toast({
-        title: "Failed to send message",
-        description: "There was an error sending your message. Please check the console for details or try again later.",
+        title: "Failed to open email client",
+        description: "There was an error opening your email client. Please try again or contact me directly at shree.xai.dev@gmail.com",
         variant: "destructive",
       });
-    } finally {
-      setIsLoading(false);
     }
   };
 
