@@ -1,7 +1,7 @@
 // Central configuration file for portfolio constants
 
 // Resume URL - update this single location to change everywhere
-export const RESUME_URL = "https://drive.google.com/file/d/1FEP63do20ck0ju0OIlsVfe5SCm46lY88/view?usp=sharing";
+export const RESUME_URL = "https://drive.google.com/drive/folders/1ABlPpAS8l-z7La-15iLGhOhVHak2ZTS5?usp=sharing";
 
 // EmailJS configuration
 export const EMAILJS_SERVICE_ID = 'service_x6heccf'; // Replace with your EmailJS service ID
