@@ -81,10 +81,9 @@ const Contact = () => {
     }));
   };
   
-  // Temporary solution: Use mailto link instead of EmailJS
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
     // Form validation
     if (!formData.name || !formData.email || !formData.subject || !formData.message) {
       toast({
@@ -94,45 +93,42 @@ const Contact = () => {
       });
       return;
     }
-    
-    try {
-      // Format the email body with line breaks
-      const emailBody = `Name: ${formData.name}
 
-Email: ${formData.email}
+    setIsLoading(true);
 
-Message:
-${formData.message}`;
-      
-      // Create mailto link with all form data
-      const mailtoLink = `mailto:shree.xai.dev@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(emailBody)}`;
-      
-      // Open the user's default email client
-      window.location.href = mailtoLink;
-      
-      // Show success message
-      toast({
-        title: "Email client opened",
-        description: "Your default email client has been opened with your message. Please send the email from there.",
-        variant: "default",
+    const templateParams = {
+      name: formData.name,
+      email: formData.email,
+      subject: formData.subject,
+      message: formData.message,
+    };
+
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+      .then((response) => {
+        console.log('SUCCESS!', response.status, response.text);
+        toast({
+          title: "Message Sent!",
+          description: "Your message has been sent successfully. I'll get back to you soon!",
+          variant: "default",
+        });
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: ''
+        });
+      })
+      .catch((error) => {
+        console.error('FAILED...', error);
+        toast({
+          title: "Uh oh! Something went wrong.",
+          description: "There was an error sending your message. Please try again or contact me directly.",
+          variant: "destructive",
+        });
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
-      
-      // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-      });
-    } catch (error) {
-      console.error("Error opening email client:", error);
-      
-      toast({
-        title: "Failed to open email client",
-        description: "There was an error opening your email client. Please try again or contact me directly at shree.xai.dev@gmail.com",
-        variant: "destructive",
-      });
-    }
   };
 
   const fadeInUp = {
