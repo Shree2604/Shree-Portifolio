@@ -173,7 +173,7 @@ const About = () => {
                     href="mailto:shreeraj.m22@iiits.in" 
                     className="text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
-                    shreeraj.m22@iiits.in
+                    shree.xai.dev@gmail.com
                   </a>
                 </div>
                 <div className="mt-4">
