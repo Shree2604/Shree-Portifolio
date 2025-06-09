@@ -170,7 +170,7 @@ const About = () => {
                   </a>
                   <span className="text-muted-foreground">|</span>
                   <a 
-                    href="mailto:shreeraj.m22@iiits.in" 
+                    href="mailto:shree.xai.dev@gmail.com" 
                     className="text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
                     shree.xai.dev@gmail.com
