@@ -1,26 +1,31 @@
 // src/pages/Contact.test.tsx
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, waitFor, within, fireEvent } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
+import { ToastProvider } from '@/components/ui/toast';
 import userEvent from '@testing-library/user-event';
 import Contact from './Contact'; // Adjust path if necessary
 import emailjs from '@emailjs/browser';
-import { useToast } from '@/hooks/use-toast'; // Adjust path if necessary
+// We don't need to import useToast directly if we're mocking the module entirely
+
+// Define the mock toast function at the top level, so it's a single instance
+const mockToastImplementation = vi.fn();
 
 // Mock EmailJS
 vi.mock('@emailjs/browser', () => ({
   default: {
-    send: vi.fn(),
-    init: vi.fn(), // Mock init as well since it's called in useEffect
+    init: vi.fn(),
+    send: vi.fn(), // Default mock, will be configured in beforeEach or per test
   },
 }));
 
-// Mock useToast
+// Mock useToast to use the single mockToastImplementation
 vi.mock('@/hooks/use-toast', () => ({
   useToast: () => ({
-    toast: vi.fn(),
+    toast: mockToastImplementation,
   }),
 }));
 
-// Mock constants (if they cause issues, though usually not needed for string constants)
+// Mock constants
 vi.mock('@/config/constants', () => ({
   EMAILJS_SERVICE_ID: 'test_service_id',
   EMAILJS_TEMPLATE_ID: 'test_template_id',
@@ -28,41 +33,59 @@ vi.mock('@/config/constants', () => ({
   RESUME_URL: 'http://example.com/resume.pdf',
 }));
 
+// Helper function to render the component with necessary providers
+const renderContactForm = () => {
+  return render(
+    <MemoryRouter>
+      <ToastProvider>
+        <Contact />
+      </ToastProvider>
+    </MemoryRouter>
+  );
+};
+
+// Helper to get form elements scoped within the form
+const getFormElements = () => {
+  const form = screen.getByTestId('contact-form');
+  return {
+    form,
+    nameInput: within(form).getByPlaceholderText(/Your Name/i),
+    emailInput: within(form).getByPlaceholderText(/Your Email/i),
+    subjectInput: within(form).getByPlaceholderText(/Subject/i),
+    messageTextarea: within(form).getByRole('textbox', { name: /Message/i }),
+    submitButton: within(form).getByRole('button', { name: /Send Message/i }),
+  };
+};
 
 describe('Contact Form', () => {
-  const mockToast = vi.fn();
-
   beforeEach(() => {
+    // Reset all mocks: clears call history, instances, and results.
     vi.clearAllMocks();
-    // Re-assign mock for useToast before each test if needed, or ensure the mock above is sufficient
-    (useToast as any).mockReturnValue({ toast: mockToast }); 
-    // Ensure emailjs.send is a Vitest mock function
-    (emailjs.send as import('vitest').Mock).mockResolvedValue({ status: 200, text: 'OK' });
+
+    // Re-establish the default mock for emailjs.send AFTER clearing.
+    // This ensures that any test-specific .mockRejectedValueOnce() or other
+    // single-use mock implementations are gone, and we have a fresh default.
+    vi.mocked(emailjs.send).mockResolvedValue({ status: 200, text: 'OK' });
   });
 
   test('renders contact form correctly', () => {
-    render(<Contact />);
-    expect(screen.getByPlaceholderText(/Your Name/i)).toBeInTheDocument();
-    expect(screen.getByPlaceholderText(/Your Email/i)).toBeInTheDocument();
-    expect(screen.getByPlaceholderText(/Subject/i)).toBeInTheDocument();
-    expect(screen.getByPlaceholderText(/Your Message/i)).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /Send Message/i })).toBeInTheDocument();
+    renderContactForm();
+    const { nameInput, emailInput, subjectInput, messageTextarea, submitButton } = getFormElements();
+    expect(nameInput).toBeInTheDocument();
+    expect(emailInput).toBeInTheDocument();
+    expect(subjectInput).toBeInTheDocument();
+    expect(messageTextarea).toBeInTheDocument();
+    expect(submitButton).toBeInTheDocument();
   });
 
   test('allows user to type into form fields', async () => {
     const user = userEvent.setup();
-    render(<Contact />);
-    
-    const nameInput = screen.getByPlaceholderText(/Your Name/i);
-    const emailInput = screen.getByPlaceholderText(/Your Email/i);
-    const subjectInput = screen.getByPlaceholderText(/Subject/i);
-    const messageTextarea = screen.getByPlaceholderText(/Your Message/i);
-
+    renderContactForm();
+    const { nameInput, emailInput, subjectInput, messageTextarea } = getFormElements();
     await user.type(nameInput, 'John Doe');
     await user.type(emailInput, 'john.doe@example.com');
     await user.type(subjectInput, 'Test Subject');
     await user.type(messageTextarea, 'This is a test message.');
-
     expect(nameInput).toHaveValue('John Doe');
     expect(emailInput).toHaveValue('john.doe@example.com');
     expect(subjectInput).toHaveValue('Test Subject');
@@ -71,28 +94,25 @@ describe('Contact Form', () => {
 
   test('shows validation error if fields are missing', async () => {
     const user = userEvent.setup();
-    render(<Contact />);
-    
-    const submitButton = screen.getByRole('button', { name: /Send Message/i });
+    renderContactForm();
+    const { submitButton } = getFormElements();
     await user.click(submitButton);
-
-    expect(mockToast).toHaveBeenCalledWith({
-      title: "Missing information",
-      description: "Please fill out all fields in the form.",
-      variant: "destructive",
+    await waitFor(() => {
+      // Diagnostic log
+      console.log('mockToastImplementation calls:', JSON.stringify(mockToastImplementation.mock.calls, null, 2));
+      expect(mockToastImplementation).toHaveBeenCalledWith({
+        title: "Missing information",
+        description: "Please fill out all fields in the form.",
+        variant: "destructive",
+      });
     });
     expect(emailjs.send).not.toHaveBeenCalled();
   });
 
   test('submits the form successfully with valid data', async () => {
     const user = userEvent.setup();
-    render(<Contact />);
-
-    const nameInput = screen.getByPlaceholderText(/Your Name/i);
-    const emailInput = screen.getByPlaceholderText(/Your Email/i);
-    const subjectInput = screen.getByPlaceholderText(/Subject/i);
-    const messageTextarea = screen.getByPlaceholderText(/Your Message/i);
-    const submitButton = screen.getByRole('button', { name: /Send Message/i });
+    renderContactForm();
+    const { nameInput, emailInput, subjectInput, messageTextarea, submitButton } = getFormElements();
 
     await user.type(nameInput, 'Jane Doe');
     await user.type(emailInput, 'jane.doe@example.com');
@@ -115,7 +135,7 @@ describe('Contact Form', () => {
     });
     
     await waitFor(() => {
-      expect(mockToast).toHaveBeenCalledWith({
+      expect(mockToastImplementation).toHaveBeenCalledWith({ // Changed to mockToastImplementation
         title: "Message Sent!",
         description: "Your message has been sent successfully. I'll get back to you soon!",
         variant: "default",
@@ -134,13 +154,8 @@ describe('Contact Form', () => {
     // Mock emailjs.send to reject for this specific test
     (emailjs.send as import('vitest').Mock).mockRejectedValueOnce(new Error('EmailJS failed'));
     
-    render(<Contact />);
-
-    const nameInput = screen.getByPlaceholderText(/Your Name/i);
-    const emailInput = screen.getByPlaceholderText(/Your Email/i);
-    const subjectInput = screen.getByPlaceholderText(/Subject/i);
-    const messageTextarea = screen.getByPlaceholderText(/Your Message/i);
-    const submitButton = screen.getByRole('button', { name: /Send Message/i });
+    renderContactForm();
+    const { nameInput, emailInput, subjectInput, messageTextarea, submitButton } = getFormElements();
 
     await user.type(nameInput, 'Error Test');
     await user.type(emailInput, 'error@example.com');
@@ -154,7 +169,7 @@ describe('Contact Form', () => {
     });
 
     await waitFor(() => {
-      expect(mockToast).toHaveBeenCalledWith({
+      expect(mockToastImplementation).toHaveBeenCalledWith({ // Changed to mockToastImplementation
         title: "Uh oh! Something went wrong.",
         description: "There was an error sending your message. Please try again or contact me directly.",
         variant: "destructive",

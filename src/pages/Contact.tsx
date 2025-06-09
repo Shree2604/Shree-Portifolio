@@ -228,7 +228,7 @@ const Contact = () => {
               <AnimatedCard className="p-8 w-full max-w-md" glowOnHover>
                 <h3 className="text-2xl font-bold mb-6 text-gradient text-center">Send a Message</h3>
                 
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6" data-testid="contact-form">
                   <div>
                     <label htmlFor="from_name" className="block text-sm font-medium mb-2">
                       Name
