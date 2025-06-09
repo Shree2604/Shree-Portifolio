@@ -70,11 +70,25 @@ const featuredPosts = [
   }
 ];
 
-// Skills data
+
 const skills = [
-  "Python", "TensorFlow", "PyTorch", "LangChain", "Google Gemini",
-  "LLMs", "Computer Vision", "Natural Language Processing", "MLOps"
+  // Programming Languages
+  "Python", "C++", "Java", "SQL",
+
+  // Tools & Frameworks
+  "Git", "GitHub", "Matlab", "Linux", "Amazon Web Services", "Flask", "Django",
+  "Hugging Face", "Streamlit", "MongoDB", "Express.js", "React.js", "Node.js",
+  "Docker", "Google Gemini",
+
+  // Machine Learning & AI
+  "TensorFlow", "PyTorch", "Scikit-Learn", "NumPy", "Pandas", "LangChain",
+  "LangGraph", "LLMs", "Computer Vision", "Natural Language Processing", "MLOps",
+
+  // Relevant Coursework
+  "Data Structures", "OOPS", "Operating Systems", "DBMS",
+  "Computer Networks", "Cloud Computing"
 ];
+
 
 
 
@@ -172,17 +186,17 @@ const Index = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5, duration: 1 }}
-                className="absolute top-10 right-4 md:right-10 bg-secondary/30 backdrop-blur-sm px-4 py-2 rounded-full text-sm flex items-center gap-2"
+                className="absolute top-4 right-2 sm:top-6 sm:right-3 md:top-10 md:right-10 bg-secondary/30 backdrop-blur-sm px-4 py-2 rounded-full text-sm flex items-center gap-2"
               >
                 <span className="h-2 w-2 bg-green-500 rounded-full animate-pulse"></span>
                 <span>{visitorCount.toLocaleString()} visitors</span>
               </motion.div>
               
               {/* Enhanced name container with background */}
-              <div className="rounded-xl bg-background/70 backdrop-blur-md p-6 mb-8 shadow-lg border border-primary/20 inline-block">
+              <div className="rounded-xl bg-background/70 backdrop-blur-md p-3 sm:p-4 md:p-6 mb-8 shadow-lg border border-primary/20 inline-block">
                 {/* Animated name with letter-by-letter animation - IMPROVED VISIBILITY */}
                 <div className="overflow-hidden flex flex-wrap justify-center mb-4">
-                  {"Shree Raj Mummidivarapu".split('').map((char, index) => (
+                  {"ShreeRaj Mummidivarapu".split('').map((char, index) => (
                     <motion.span
                       key={index}
                       custom={index}
@@ -204,7 +218,7 @@ const Index = () => {
                   transition={{ delay: 1.5, duration: 0.7 }}
                 >
                   <h2 className="text-xl md:text-2xl lg:text-3xl mb-6 text-muted-foreground font-orbitron" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.3)' }}>
-                    AI/ML Engineering Specialist
+                    Agentic AI Research Enthusiast
                   </h2>
                 </motion.div>
                 
@@ -215,7 +229,7 @@ const Index = () => {
                   className="w-full max-w-xl mx-auto"
                 >
                   <div className="text-primary text-lg md:text-xl lg:text-2xl mb-8" style={{ textShadow: '0 0 8px rgba(14, 165, 233, 0.5)' }}>
-                    Transforming AI into Intelligent Solutions
+                    Turning AI Innovations into Real-World Impact
                   </div>
                 </motion.div>
               </div>

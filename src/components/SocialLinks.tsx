@@ -38,7 +38,7 @@ export default function SocialLinks({ vertical = false, openResumeModal }: Socia
   ];
 
   return (
-    <div className={`flex ${vertical ? 'flex-col space-y-3' : 'space-x-4'} justify-center mx-auto`}>
+    <div className={`flex ${vertical ? 'flex-col space-y-3' : 'grid grid-cols-2 gap-4 sm:flex sm:flex-row sm:space-x-4 sm:gap-0'} justify-center items-center mx-auto`}>
       {links.map((link, index) => (
         <motion.div
           key={link.label}
