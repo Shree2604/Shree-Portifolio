@@ -61,7 +61,20 @@ const projects = [
     role: "Full Stack Developer",
     problem: "Emerging musicians struggle to manage and distribute their music while connecting with potential listeners and industry partners.",
     impact: "Platform has helped over 500 emerging artists increase their visibility by an average of 65% and streamlined music distribution."
-  }
+  }.
+  {
+    id: 5,
+    title: "Badminton AI Analysis with LangGraph",
+    description: "AI-powered badminton performance analysis system using LangGraph for workflow orchestration. Implements multi-modal analysis combining pose detection with audio transcription for comprehensive player feedback.",
+    technologies: ["LangGraph", "MediaPipe", "OpenCV", "Gemini AI", "Multi-modal AI"],
+    githubUrl: "https://github.com/Shree2604/Badminton-AI-LangGraph-Analysis",
+    liveUrl: null,
+    details: "The Badminton AI Analysis system revolutionizes sports training by providing automated, data-driven performance insights. The system processes video inputs to track player movements, analyze form, and generate detailed reports. It features role-based reporting (coach/student/parent) with multi-language support (English, Hindi, Tamil, Telugu, Kannada) and generates professional PDF reports with visual annotations and performance metrics.",
+    category: "Sports Technology",
+    role: "AI/ML Engineer & Developer",
+    problem: "Badminton players and coaches lack objective, data-driven feedback for performance improvement. Traditional video analysis is time-consuming and subjective, making it difficult to track progress and identify areas for improvement.",
+    impact: "Reduced analysis time by 80% compared to manual review, while providing consistent, objective feedback. The system's multi-language support makes advanced performance analysis accessible to non-English speaking coaches and players."
+    }
 ];
 
 const Projects = () => {
