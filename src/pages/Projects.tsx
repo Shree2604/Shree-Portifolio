@@ -61,7 +61,7 @@ const projects = [
     role: "Full Stack Developer",
     problem: "Emerging musicians struggle to manage and distribute their music while connecting with potential listeners and industry partners.",
     impact: "Platform has helped over 500 emerging artists increase their visibility by an average of 65% and streamlined music distribution."
-  }.
+  },
   {
     id: 5,
     title: "Badminton AI Analysis with LangGraph",
@@ -74,8 +74,9 @@ const projects = [
     role: "AI/ML Engineer & Developer",
     problem: "Badminton players and coaches lack objective, data-driven feedback for performance improvement. Traditional video analysis is time-consuming and subjective, making it difficult to track progress and identify areas for improvement.",
     impact: "Reduced analysis time by 80% compared to manual review, while providing consistent, objective feedback. The system's multi-language support makes advanced performance analysis accessible to non-English speaking coaches and players."
-    }
+  }
 ];
+
 
 const Projects = () => {
   // Animation variants for staggered animations
