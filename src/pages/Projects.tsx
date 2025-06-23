@@ -74,8 +74,22 @@ const projects = [
     role: "AI/ML Engineer & Developer",
     problem: "Badminton players and coaches lack objective, data-driven feedback for performance improvement. Traditional video analysis is time-consuming and subjective, making it difficult to track progress and identify areas for improvement.",
     impact: "Reduced analysis time by 80% compared to manual review, while providing consistent, objective feedback. The system's multi-language support makes advanced performance analysis accessible to non-English speaking coaches and players."
+  },
+  {
+    id: 6,
+    title: "Quotivation Bot",
+    description: "GitHub Action-based bot that posts daily AI-themed motivational quotes to help developers maintain their commit streaks.",
+    technologies: ["GitHub Actions", "Python", "Markdown", "Automation"],
+    githubUrl: "https://github.com/Shree2604/quotivation-bot",
+    liveUrl: null,
+    details: "This project automates the daily generation and commit of AI-themed motivational quotes using a GitHub Actions workflow. It updates a markdown file at midnight IST with a new quote, helping developers keep their GitHub activity graph alive while staying inspired.",
+    category: "DevOps/Automation",
+    role: "Creator & Maintainer",
+    problem: "Developers often make meaningless commits to maintain streaks. This project provides a valuable alternative by offering daily motivational content related to AI and technology.",
+    impact: "Improved developer motivation while maintaining meaningful contribution streaks. Has a growing user base and supports community engagement through shareable quotes."
   }
 ];
+
 
 
 const Projects = () => {
