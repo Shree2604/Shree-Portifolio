@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import Section from '@/components/Section';
 import { Button } from '@/components/ui/button';
@@ -87,34 +86,44 @@ const projects = [
     role: "Creator & Maintainer",
     problem: "Developers often make meaningless commits to maintain streaks. This project provides a valuable alternative by offering daily motivational content related to AI and technology.",
     impact: "Improved developer motivation while maintaining meaningful contribution streaks. Has a growing user base and supports community engagement through shareable quotes."
+  },
+  {
+    id: 7,
+    title: "Intelligent Ad Copy Generator",
+    description: "Agentic RAG system that crafts optimized, platform-specific ad copy for Google, Facebook, Instagram, LinkedIn, and Twitter. Supports tone adaptation, user feedback, and high-conversion targeting.",
+    technologies: ["LangGraph", "Google Gemini", "Chroma", "FastAPI", "RAG", "Streamlit"],
+    githubUrl: "https://github.com/Shree2604/Addcopy-Pro",
+    liveUrl: null,
+    details: "This full-stack AI system uses Graph RAG and Agentic RAG to generate tailored ad copy based on user input, platform context, and tone preferences. It features a memory-driven agent loop for learning from past feedback and suggestions. The interface, built with Streamlit, provides users with a seamless workflow to generate, refine, and evaluate ad content in real-time.",
+    category: "AI/LLM",
+    role: "Lead Developer",
+    problem: "Writing persuasive, platform-aligned ad copy manually is slow, error-prone, and hard to scale—especially across multiple tones and campaign styles.",
+    impact: "Boosted copywriting productivity by 70% and increased CTR by 40% in testing campaigns using AI-generated content tuned to each platform."
   }
 ];
 
-
-
 const Projects = () => {
-  // Animation variants for staggered animations
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { 
+      transition: {
         staggerChildren: 0.15,
-        delayChildren: 0.2
-      }
-    }
+        delayChildren: 0.2,
+      },
+    },
   };
 
   return (
     <>
-      <Section 
-        title="Projects" 
-        subtitle="A showcase of my technical solutions to real-world problems" 
+      <Section
+        title="Projects"
+        subtitle="A showcase of my technical solutions to real-world problems"
         id="projects"
         className="min-h-screen"
       >
         <div className="container mx-auto px-4 py-8">
-          <motion.div 
+          <motion.div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
             variants={containerVariants}
             initial="hidden"
