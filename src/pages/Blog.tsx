@@ -46,7 +46,7 @@ const posts: Post[] = [
     readTime: "8 min",
     category: "Computer Vision",
     tags: ["Python", "OpenCV", "Graphics"],
-    type: "publication",
+    type: "blog",
     url: "https://medium.com/epochiiits/creating-artistic-outlines-combining-python-opencv-and-turtle-graphics-178a1faab856"
   },
   {
